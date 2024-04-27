@@ -1,8 +1,8 @@
 const options = {
   method: 'GET',
   headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NWI5NGFhM2NlYmVlNTE3MDA1OGZkNTE4YmYyMzdmOSIsInN1YiI6IjY2MjhlMTQwZTI5NWI0MDE0YTlhM2EyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.92T_Xg7sAwljnOVmTCWxLkYMWTXdvllzp8EVPjlWVv0'
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NWI5NGFhM2NlYmVlNTE3MDA1OGZkNTE4YmYyMzdmOSIsInN1YiI6IjY2MjhlMTQwZTI5NWI0MDE0YTlhM2EyMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.92T_Xg7sAwljnOVmTCWxLkYMWTXdvllzp8EVPjlWVv0'
   }
 };
 
@@ -13,14 +13,14 @@ async function getdata() {
   const data = await response.json();
 
   for (item of data['results']) {
-      const movie = {};
-      movie['title'] = item['title'];
-      movie['overview'] = item['overview'];
-      movie['poster_path'] = item['poster_path'];
-      movie['vote_average'] = item['vote_average'];
-      movie['movie_id'] = item['id'];
+    const movie = {};
+    movie['title'] = item['title'];
+    movie['overview'] = item['overview'];
+    movie['poster_path'] = item['poster_path'];
+    movie['vote_average'] = item['vote_average'];
+    movie['movie_id'] = item['id'];
 
-      movieData.push(movie);
+    movieData.push(movie);
   };
   return movieData;
 };
@@ -47,28 +47,28 @@ function makeCard(item, count) {
 }
 
 function movieSearch() {
-  
+
   const ex = document.querySelector("#search").value.toLowerCase();
 
   const searchedData = movieData.filter((i) => {
-      if(i['title'].toLowerCase().search(ex) !== -1) {
-          return i['title'];
-      }
+    if (i['title'].toLowerCase().search(ex) !== -1) {
+      return i['title'];
+    }
   });
 
   let num = 0;
 
-  for (let count = 0; count<20; count++) {
-      const movieCardDiv = document.querySelector(`#movieCard${count}`);
-      const movieTitle = document.querySelector(`#movieTitle${count}`);
+  for (let count = 0; count < 20; count++) {
+    const movieCardDiv = document.querySelector(`#movieCard${count}`);
+    const movieTitle = document.querySelector(`#movieTitle${count}`);
 
-      if (searchedData[num]['title'] === movieTitle.innerHTML.substr(4,1000)) {
-          console.log(searchedData[num]['title'], movieTitle.innerHTML.substr(4,1000))
-          movieCardDiv.setAttribute("style", "display: block;")
-          if(searchedData.length-1 > num) {num++};
-      } else {
-          movieCardDiv.setAttribute("style", "display: none;")
-      }
+    if (searchedData[num]['title'] === movieTitle.innerHTML.substr(4, 1000)) {
+      console.log(searchedData[num]['title'], movieTitle.innerHTML.substr(4, 1000))
+      movieCardDiv.setAttribute("style", "display: block;")
+      if (searchedData.length - 1 > num) { num++ };
+    } else {
+      movieCardDiv.setAttribute("style", "display: none;")
+    }
 
   }
 
@@ -79,14 +79,14 @@ const print = async () => {
   const data = await getdata();
   let count = 0;
   data.forEach(item => {
-      makeCard(item, count);
-      count++;
+    makeCard(item, count);
+    count++;
   });
-  
+
   document.getElementById("searchbtn").addEventListener("click", movieSearch);
   document.getElementById("searchbtn").addEventListener("keydown", event => {
-      if (event.key == 'Enter') {movieSearch()};
+    if (event.key == 'Enter') { movieSearch() };
   });
-} 
+}
 
 print();
