@@ -19,10 +19,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 100pt;
+    font-size: 70pt;
     font-weight: bold;
-    color: rgb(253, 3, 3);
-    text-shadow: 5px 5px black, 8px 8px rgba(0, 0, 0, 0.781);
+    color: rgb(253, 3, 3);  
+    text-shadow: 5px 5px black, 8px 8px rgba(0, 0, 0, 0.781); 
 }
 
 .search {
